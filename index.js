@@ -118,6 +118,10 @@ app.use(
   })
 );
 var port = 5500;
-app.listen(5500, () => console.log("Running Graphql on Port:" + port));
+app.listen(5500, () =>
+  console.log(
+    `Running Graphql on Port:${port} and Running a GraphQL API server at http://localhost:5500/graphql`
+  )
+);
 
-export default root;
+//export default root;
