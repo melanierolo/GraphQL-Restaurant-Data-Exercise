@@ -98,6 +98,7 @@ var root = {
   },
   restaurants: () => {
     // Your code goes here
+    return restaurants;
   },
   setrestaurant: ({ input }) => {
     // Your code goes here
