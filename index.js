@@ -1,5 +1,5 @@
 var { graphqlHTTP } = require("express-graphql");
-var { buildSchema, assertInputType } = require("graphql");
+var { buildSchema, assertInputType, concatAST } = require("graphql");
 var express = require("express");
 
 // Construct a schema, using GraphQL schema language
@@ -107,10 +107,14 @@ var root = {
   },
   deleterestaurant: ({ id }) => {
     // Your code goes here
+    const ok = Boolean(restaurants[id]);
+    let delr = restaurants[id];
+    restaurants = restaurants.filter((item) => item.id !== id);
+    console.log(JSON.stringify(delr));
+    return { ok };
   },
   editrestaurant: ({ id, ...restaurant }) => {
     // Your code goes here
-  },
 };
 var app = express();
 app.use(
