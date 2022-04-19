@@ -94,6 +94,7 @@ type Mutation{
 var root = {
   restaurant: (arg) => {
     // Your code goes here
+    return restaurants[arg.id];
   },
   restaurants: () => {
     // Your code goes here
