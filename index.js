@@ -102,6 +102,8 @@ var root = {
   },
   setrestaurant: ({ input }) => {
     // Your code goes here
+    restaurants.push({ name: input.name, description: input.description });
+    return input;
   },
   deleterestaurant: ({ id }) => {
     // Your code goes here
