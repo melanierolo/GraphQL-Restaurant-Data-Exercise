@@ -115,6 +115,7 @@ var root = {
   },
   editrestaurant: ({ id, ...restaurant }) => {
     // Your code goes here
+  },
 };
 var app = express();
 app.use(
