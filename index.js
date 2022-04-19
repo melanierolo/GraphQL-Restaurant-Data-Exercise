@@ -115,6 +115,11 @@ var root = {
   },
   editrestaurant: ({ id, ...restaurant }) => {
     // Your code goes here
+    if (!restaurants[id]) {
+      throw new Error("contact doesn't exist");
+    }
+    restaurants[id] = { ...restaurants[id], ...restaurant };
+    return restaurants[id];
   },
 };
 var app = express();
