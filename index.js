@@ -1,5 +1,5 @@
 var { graphqlHTTP } = require("express-graphql");
-var { buildSchema, assertInputType } = require("graphql");
+var { buildSchema, assertInputType, concatAST } = require("graphql");
 var express = require("express");
 
 // Construct a schema, using GraphQL schema language
@@ -98,15 +98,28 @@ var root = {
   },
   restaurants: () => {
     // Your code goes here
+    return restaurants;
   },
   setrestaurant: ({ input }) => {
     // Your code goes here
+    restaurants.push({ name: input.name, description: input.description });
+    return input;
   },
   deleterestaurant: ({ id }) => {
     // Your code goes here
+    const ok = Boolean(restaurants[id]);
+    let delr = restaurants[id];
+    restaurants = restaurants.filter((item) => item.id !== id);
+    console.log(JSON.stringify(delr));
+    return { ok };
   },
   editrestaurant: ({ id, ...restaurant }) => {
     // Your code goes here
+    if (!restaurants[id]) {
+      throw new Error("contact doesn't exist");
+    }
+    restaurants[id] = { ...restaurants[id], ...restaurant };
+    return restaurants[id];
   },
 };
 var app = express();
